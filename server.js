@@ -9,7 +9,19 @@ var busboy = require('connect-busboy'); //middleware for form/file upload
 var formidable = require('formidable');
 var path = require('path');     //used for file path
 var fs = require('fs-extra');       //File System - for file manipulation
+var pg = require('pg');
 
+pg.defaults.ssl = true;
+pg.connect("postgres://lnlarwlcdhrcpd:mp-kkpkDFWUbHzoPulOkzUY5g_@ec2-54-228-246-42.eu-west-1.compute.amazonaws.com:5432/d9l6ekra65mk3a", function(err, client) {
+  if (err) throw err;
+  console.log('Connected to postgres! Getting schemas...');
+
+  //client
+  //  .query('drop table Persons')
+  //  .on('row', function(row) {
+  //    console.log(JSON.stringify(row));
+  //  });
+});
 //var users = require('./api/users');
 // var db_config = {
 //   	host: 'localhost',
