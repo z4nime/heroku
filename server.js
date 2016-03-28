@@ -82,8 +82,8 @@ app.use(bodyParser.urlencoded({
 app.get('/api/users/', function(req, res,next) {
 	db.query('select * from user', function(err, rows, fields) {
 	  	if (err) throw err;
-		  //res.send("data");
-		  res.json(rows);
+		  res.send("data");
+		  //res.json(rows);
 
 	});
 });
