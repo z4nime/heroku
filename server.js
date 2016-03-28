@@ -4,7 +4,6 @@
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
-var mysql = require('mysql');
 var bodyParser = require('body-parser');
 var busboy = require('connect-busboy'); //middleware for form/file upload
 var formidable = require('formidable');
