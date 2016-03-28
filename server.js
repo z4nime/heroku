@@ -80,12 +80,11 @@ app.use(bodyParser.urlencoded({
 
 // user
 app.get('/api/users/', function(req, res,next) {
-	db.query('select * from user', function(err, rows, fields) {
-	  	if (err) throw err;
-		  res.send("data");
-		  //res.json(rows);
-
-	});
+client
+    .query('select * from user')
+	.on('row', function(row) {
+      res.json(JSON.stringify(row));
+    });
 });
 app.get('/api/users/:oppai_name', function(req, res) {
 	db.query("select * from user where oppai_name='"+req.params.oppai_name+"'", function(err, rows, fields) {
