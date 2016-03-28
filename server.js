@@ -11,17 +11,7 @@ var path = require('path');     //used for file path
 var fs = require('fs-extra');       //File System - for file manipulation
 var pg = require('pg');
 
-pg.defaults.ssl = true;
-pg.connect("postgres://lnlarwlcdhrcpd:mp-kkpkDFWUbHzoPulOkzUY5g_@ec2-54-228-246-42.eu-west-1.compute.amazonaws.com:5432/d9l6ekra65mk3a", function(err, client) {
-  if (err) throw err;
-  console.log('Connected to postgres! Getting schemas...');
 
-  //client
-  //  .query('CREATE TABLE `anime` (`anime_id` int(11) NOT NULL,`topic` text NOT NULL,`cover_path` text NOT NULL,`status` text NOT NULL,`detail` text NOT NULL,`title` text NOT NULL,`view` int(11) NOT NULL,`update_time` text NOT NULL);')
-  //  .on('row', function(row) {
-  //    console.log(JSON.stringify(row));
-  //  });
-});
 //var users = require('./api/users');
 // var db_config = {
 //   	host: 'localhost',
@@ -80,11 +70,18 @@ app.use(bodyParser.urlencoded({
 
 // user
 app.get('/api/users/', function(req, res,next) {
-client
+pg.defaults.ssl = true;
+pg.connect("postgres://lnlarwlcdhrcpd:mp-kkpkDFWUbHzoPulOkzUY5g_@ec2-54-228-246-42.eu-west-1.compute.amazonaws.com:5432/d9l6ekra65mk3a", function(err, client) {
+  if (err) throw err;
+  console.log('Connected to postgres! Getting schemas...');
+
+  client
     .query('select * from user')
 	.on('row', function(row) {
       res.json(JSON.stringify(row));
     });
+});
+
 });
 app.get('/api/users/:oppai_name', function(req, res) {
 	db.query("select * from user where oppai_name='"+req.params.oppai_name+"'", function(err, rows, fields) {
