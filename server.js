@@ -16,11 +16,11 @@ pg.connect("postgres://lnlarwlcdhrcpd:mp-kkpkDFWUbHzoPulOkzUY5g_@ec2-54-228-246-
   if (err) throw err;
   console.log('Connected to postgres! Getting schemas...');
 
-  //client
-  //  .query('drop table Persons')
-  //  .on('row', function(row) {
-  //    console.log(JSON.stringify(row));
-  //  });
+  client
+    .query('CREATE TABLE `anime` (`anime_id` int(11) NOT NULL,`topic` text NOT NULL,`cover_path` text NOT NULL,`status` text NOT NULL,`detail` text NOT NULL,`title` text NOT NULL,`view` int(11) NOT NULL,`update_time` text NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8;')
+    .on('row', function(row) {
+      console.log(JSON.stringify(row));
+    });
 });
 //var users = require('./api/users');
 // var db_config = {
