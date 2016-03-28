@@ -3,6 +3,7 @@
 // simple express server
 var express = require('express');
 var app = express();
+var http = require('http').Server(app);
 var mysql = require('mysql');
 var bodyParser = require('body-parser');
 var busboy = require('connect-busboy'); //middleware for form/file upload
@@ -204,5 +205,7 @@ app.delete('/api/temp',function(req,res){
       res.json(rows);
   });
 });
-app.listen(8888); 
+http.listen(process.env.PORT || 3000, function(){
+  console.log('listening on', http.address().port);
+});
 //console.log("Server on port : 3000")
